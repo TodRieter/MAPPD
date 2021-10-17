@@ -1,23 +1,49 @@
 import 'package:flutter/material.dart';
 
-class TodoItem extends StatelessWidget {
+class TodoItem extends StatefulWidget {
   String? taskName;
-  TodoItem(this.taskName);
+  String? details;
+
+  TodoItem(this.taskName, this.details);
+
+  @override
+  State<TodoItem> createState() => _TodoItemState();
+}
+
+class _TodoItemState extends State<TodoItem> {
+  bool showDetails = false;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.green,
-      child: AppBar(
-        backgroundColor: Colors.green[700],
-        title: Text("TODO: $taskName"),
-        shadowColor: Colors.black,
-        elevation: 12,
-      ),
+    return TextButton(
+      child: showDetails == true
+          ? Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AppBar(
+                  title: Text("TODO: ${widget.taskName} tap to hide details"),
+                  elevation: 12,
+                ),
+                Text(
+                  "      ${widget.details!}",
+                  style: const TextStyle(fontSize: 24, color: Colors.white),
+                  textAlign: TextAlign.justify,
+                ),
+              ],
+            )
+          : Column(
+              children: [
+                AppBar(
+                  title: Text("TODO: ${widget.taskName} tap to show details"),
+                  elevation: 12,
+                ),
+              ],
+            ),
+      onPressed: () => setState(() => showDetails = showDetails ? false : true),
     );
   }
 
-  TodoItem todoItem(taskName) => TodoItem(this.taskName);
+  TodoItem todoItem(taskName) => TodoItem(taskName, widget.details);
 }
 
 // class _TodoItemState extends State<TodoItem> {
