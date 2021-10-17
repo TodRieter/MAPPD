@@ -41,6 +41,11 @@ class _MyAppState extends State<MyApp> {
         ),
         body: ListView(
           children: [
+            Text(
+              "Tip: Tap on a task to show/hide details",
+              style: TextStyle(fontSize: 24),
+              textAlign: TextAlign.center,
+            ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -62,7 +67,7 @@ class _MyAppState extends State<MyApp> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    "Input task name below",
+                    "Input task name below:",
                     style: TextStyle(fontSize: 20),
                   ),
                   TextField(
@@ -71,12 +76,12 @@ class _MyAppState extends State<MyApp> {
                     onChanged: (String userInput) => nextTodoName = userInput,
                   ),
                   Text(
-                    "Input task details below",
+                    "Input task details below:",
                     style: TextStyle(fontSize: 20),
                   ),
                   TextField(
                     style: TextStyle(fontSize: 36),
-                    autofocus: true,
+                    autofocus: false,
                     onChanged: (String userInput) =>
                         nextTodoDetails = userInput,
                   ),
@@ -88,8 +93,8 @@ class _MyAppState extends State<MyApp> {
                 "Add New TODO",
                 style: TextStyle(
                     fontSize: 48,
-                    color: Colors.white,
-                    backgroundColor: darkTheme.colorScheme.secondaryVariant),
+                    color: darkTheme.colorScheme.background,
+                    backgroundColor: Colors.teal[300]),
               ),
               onPressed: addNewItem,
             ),

@@ -16,12 +16,13 @@ class _TodoItemState extends State<TodoItem> {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      child: showDetails == true
-          ? Column(
+      child: showDetails
+          ? //Turnary expression is used to toggle the details panel
+          Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AppBar(
-                  title: Text("TODO: ${widget.taskName} tap to hide details"),
+                  title: Text("TODO: ${widget.taskName}"),
                   elevation: 12,
                 ),
                 Text(
@@ -34,7 +35,7 @@ class _TodoItemState extends State<TodoItem> {
           : Column(
               children: [
                 AppBar(
-                  title: Text("TODO: ${widget.taskName} tap to show details"),
+                  title: Text("TODO: ${widget.taskName}"),
                   elevation: 12,
                 ),
               ],
@@ -45,20 +46,3 @@ class _TodoItemState extends State<TodoItem> {
 
   TodoItem todoItem(taskName) => TodoItem(taskName, widget.details);
 }
-
-// class _TodoItemState extends State<TodoItem> {
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       children: [
-//         AppBar(
-//           centerTitle: false,
-//           title: Text("TODO: $taskName"),
-//         ),
-//       ],
-//     );
-//   }
-// }
-
-// TodoItem todoItem(taskName) => TodoItem(taskName);
