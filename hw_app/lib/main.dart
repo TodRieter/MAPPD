@@ -17,7 +17,7 @@ class _DataViewerState extends State<DataViewer> {
   List<double> _datapoints = [];
   double _currentData = 0.0;
 
-  List<RaisedButton> buttonList = [];
+  List<RaisedButton> buttonList;
 
   set _data(num idx) {
     _currentData = _datapoints[idx as int];

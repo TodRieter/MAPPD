@@ -6,7 +6,7 @@ class DataPoint extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       value.toString(),
-      style: TextStyle(fontSize: 32),
+      style: const TextStyle(fontSize: 32),
     );
   }
 }
