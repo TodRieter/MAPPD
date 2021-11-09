@@ -1,3 +1,5 @@
+import 'dart:math';
+
 class MathFact {
   String text;
   int number;
@@ -12,10 +14,9 @@ class MathFact {
   });
   factory MathFact.fromJson(Map<String, dynamic> json) {
     return MathFact(
-        text: json["text"] ?? "no text :(",
-        number: json['number'] ?? -1,
-        found: json['found'] ?? false,
+        text: json["text"] ?? "",
+        number: json['number'] as int? ?? Random().nextInt(100000),
+        found: json['found'] as bool? ?? false,
         type: json["type"] ?? "notype");
-        
   }
 }

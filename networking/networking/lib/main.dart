@@ -1,6 +1,9 @@
 import 'dart:convert';
+import 'dart:math';
+
 import "package:http/http.dart" as http;
 import 'package:flutter/material.dart';
+
 import 'math_fact.dart';
 
 void main() {
@@ -31,15 +34,19 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  late MathFact mathFact;
   Future<http.Response> fetchFact() async {
-    var headers = {'content-type': 'applicatoin/json'};
+    var headers = {'content-type': 'application/json'};
+    int num = Random().nextInt(1000000);
     return await http.get(
-      Uri.parse('http://numbersapi.com/202/math'),
+      Uri.parse('http://numbersapi.com/$num/math'),
       headers: headers,
     );
   }
 
   _MyHomePageState() {
+    mathFact = MathFact(
+        text: "", number: Random().nextInt(1000000), found: true, type: "Math");
     fetchFact().then(
       (response) {
         MathFact fact = MathFact.fromJson(jsonDecode(response.body));
@@ -57,20 +64,24 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text(
+          "Test",
+        ),
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              mathFact!.text,
-            ),
-          ],
-        ),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              FloatingActionButton(
+                  onPressed: () => setState(
+                        () => fetchFact(),
+                      )),
+              Text(mathFact.text),
+            ]),
       ),
+
       // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
