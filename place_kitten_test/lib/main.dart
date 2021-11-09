@@ -1,4 +1,10 @@
+import 'dart:convert';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'math_fact.dart';
+import 'place_kitten.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,6 +37,38 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  MathFact mathFact;
+  PlaceKitten kitten;
+  _MyHomePageState({
+    this.mathFact = const MathFact(),
+    this.kitten = const PlaceKitten(imageUri: "http://placekitten.com/300/300"),
+  });
+
+  Future<http.Response> fetchFact() async {
+    var headers = {'content-type': 'application/json'};
+    int num = Random().nextInt(100000);
+    return await http.get(
+      Uri.parse('http://numbersapi.com/$num'),
+      headers: headers,
+    );
+  }
+
+  Future<http.Response> fetchFactFromNum(int num) async {
+    var headers = {'content-type': 'application/json'};
+    return await http.get(
+      Uri.parse('http://numbersapi.com/$num'),
+      headers: headers,
+    );
+  }
+
+  Future<http.Response> fetchKitten() async {
+    var headers = {'content-type': 'Image.json'};
+    int num = 300;
+    return await http.get(
+      Uri.parse('http://placekitten.com/$num/$num'),
+      headers: headers,
+    );
+  }
 
   void _incrementCounter() {
     setState(() {
@@ -40,6 +78,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    fetchFact();
+    fetchKitten();
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -48,9 +88,10 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            Text(
+              mathFact.text,
             ),
+            Image.network(kitten.imageUri),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
@@ -59,7 +100,25 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {
+          fetchFactFromNum(_counter++).then(
+            (response) {
+              MathFact fact = MathFact.fromJson(jsonDecode(response.body));
+
+              setState(
+                () {
+                  mathFact = fact;
+                },
+              );
+            },
+          );
+
+          setState(() {
+            kitten = PlaceKitten(
+                imageUri:
+                    "http://placekitten.com/${100 + _counter}/${100 + _counter}");
+          });
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
