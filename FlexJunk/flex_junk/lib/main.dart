@@ -13,14 +13,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("AppBar"),
+          title: const Text("AppBar"),
         ),
         body: Row(
           children: [
             Container(
               height: 100,
               color: Colors.blue,
-              child: Text("this name is too long in theory"),
+              child: const Text("this name is too long in theory"),
             ),
             Flexible(
               fit: FlexFit.tight,
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
               child: Container(
                 height: 100,
                 color: Colors.red,
-                child: Text("Item 2"),
+                child: const Text("Item 2"),
               ),
             ),
             Expanded(
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
               child: Container(
                 height: 100,
                 color: Colors.blue,
-                child: Text("Item 3"),
+                child: const Text("Item 3"),
               ),
             ),
           ],

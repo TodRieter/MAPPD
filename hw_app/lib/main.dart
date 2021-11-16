@@ -1,11 +1,15 @@
+// ignore_for_file: deprecated_member_use
+
 import "package:flutter/material.dart";
 import "dart:math";
 import "datapoint.dart";
 import "controlpanel.dart";
 
-main() => runApp(DataViewer());
+main() => runApp(const DataViewer());
 
 class DataViewer extends StatefulWidget {
+  const DataViewer({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _DataViewerState();
@@ -14,7 +18,7 @@ class DataViewer extends StatefulWidget {
 
 class _DataViewerState extends State<DataViewer> {
   int index = 0;
-  List<double> _datapoints = [];
+  final List<double> _datapoints = [];
   double _currentData = 0.0;
 
   List<RaisedButton> buttonList = [];
@@ -38,7 +42,7 @@ class _DataViewerState extends State<DataViewer> {
           onPressed: () => _data = i,
           child: Text(
             "Get data point $i",
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 26,
             ),
           ),
@@ -53,7 +57,7 @@ class _DataViewerState extends State<DataViewer> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             "Important Montecarlo Data!",
             style: TextStyle(
               fontSize: 32,

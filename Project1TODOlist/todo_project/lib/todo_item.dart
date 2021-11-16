@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
 class TodoItem extends StatefulWidget {
-  String? taskName;
-  String? details;
+  final String? taskName;
+  final String? details;
 
-  TodoItem(this.taskName, this.details);
+  const TodoItem(
+    this.taskName,
+    this.details, {
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<TodoItem> createState() => _TodoItemState();
