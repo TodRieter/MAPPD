@@ -10,12 +10,13 @@ class MathFact {
     required this.found,
     required this.type,
   });
+
   factory MathFact.fromJson(Map<String, dynamic> json) {
     return MathFact(
-        text: json["text"] ?? "no text :(",
-        number: json['number'] ?? -1,
-        found: json['found'] ?? false,
-        type: json["type"] ?? "notype");
-        
+      text: json['text'] ?? 'no text',
+      number: json['number'] ?? -1,
+      found: json['found'] ?? false,
+      type: json['type'] ?? 'no type',
+    );
   }
 }
