@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'services/deta.dart';
 import 'models/thing.dart';
 
 void main() {
@@ -61,6 +61,12 @@ class _MyHomePageState extends State<MyHomePage> {
               title: Text(item.second),
               children: [
                 Text(item.third),
+                ElevatedButton(
+                  onPressed: () {
+                    DetaService().postThing(item);
+                  },
+                  child: const Text("Post"),
+                )
               ],
             );
           }),
