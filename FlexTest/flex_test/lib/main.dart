@@ -14,9 +14,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Flex Testing"),
+          title: const Text("Flex Testing"),
         ),
-        body: Container(
+        body: SizedBox(
           width: double.infinity,
           height: double.infinity,
           child: Expanded(

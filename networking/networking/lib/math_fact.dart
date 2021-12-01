@@ -1,3 +1,5 @@
+import 'dart:math';
+
 class MathFact {
   String text;
   int number;

@@ -1,12 +1,16 @@
 import "package:flutter/material.dart";
 
 class DataPoint extends StatelessWidget {
-  double value;
-  DataPoint(this.value);
+  final double value;
+  const DataPoint(
+    this.value, {
+    Key? key,
+  }) : super(key: key);
+  @override
   Widget build(BuildContext context) {
     return Text(
       value.toString(),
-      style: TextStyle(fontSize: 32),
+      style: const TextStyle(fontSize: 32),
     );
   }
 }

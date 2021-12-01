@@ -33,12 +33,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  MathFact mathFact = MathFact(found: false, text: '', type: '', number: 0);
-
+  late MathFact mathFact;
   Future<http.Response> fetchFact() async {
     var headers = {'content-type': 'application/json'};
+    int num = Random().nextInt(1000000);
     return await http.get(
-      Uri.parse('http://numbersapi.com/0/math'),
+      Uri.parse('http://numbersapi.com/$num/math'),
       headers: headers,
     );
   }

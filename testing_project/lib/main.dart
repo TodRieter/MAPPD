@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -393,7 +391,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: Colors.white,
                 ),
               ),
-              decoration: BoxDecoration(color: Colors.black),
+              decoration: const BoxDecoration(color: Colors.black),
             ),
             Column(
               children: const <Widget>[
