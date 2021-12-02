@@ -2,24 +2,31 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 class Post {
-  final String avatar;
-  final String username;
-  final dynamic textField;
+  final String author;
+  final String body;
+  final String reviewer;
+  final String title;
+  final int date;
   Post(
-    this.avatar,
-    this.username,
-    this.textField,
+    this.author,
+    this.body,
+    this.reviewer,
+    this.title,
+    this.date,
   );
 
   factory Post.fromJson(Map<String, dynamic> json) {
-    return Post(json['avatar'], json['username'], json['textField']);
+    return Post(json['author'], json['body'], json['reviewer'], json['title'],
+        json['date']);
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'avatar': avatar,
-      'username': username,
-      'textField': textField,
+      'author': author,
+      'body': body,
+      'reviewer': reviewer,
+      'title': title,
+      'date': date,
     };
   }
 }
