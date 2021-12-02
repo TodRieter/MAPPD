@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'services/deta.dart';
+import 'models/post.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,7 +25,6 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
 
-
   final String title;
 
   @override
@@ -32,6 +33,20 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  final posts_from_services = DetaService().fetchPost();
+
+  final posts = [
+    Post(
+      'a',
+      'username 1',
+      "sample review",
+    ),
+    Post(
+      'b',
+      'username 2',
+      "sample review 2",
+    ),
+  ];
 
   void _incrementCounter() {
     setState(() {
@@ -41,32 +56,38 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    print("posts_from_services: ${DetaService().fetchPost()}");
     return Scaffold(
       appBar: AppBar(
-        
         title: Text(widget.title),
       ),
-      body: Center(
-       
-        child: Column(
-          
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), 
+      body: ListView.builder(
+          itemCount: posts.length,
+          itemBuilder: (context, index) {
+            final item = posts[index];
+            return ExpansionTile(
+              leading: CircleAvatar(
+                child: Text(item.avatar),
+              ),
+              title: Text(item.username),
+              children: [
+                Text(item.textField),
+                ElevatedButton(
+                  onPressed: () {
+                    DetaService().postPost(item);
+                  },
+                  child: const Text("Post"),
+                )
+              ],
+            );
+          }),
     );
+    // ),
+    // floatingActionButton: FloatingActionButton(
+    //   onPressed: _incrementCounter,
+    //   tooltip: 'Increment',
+    //   child: const Icon(Icons.add),
+    // ), //This trailing comma makes auto-formatting nicer for build methods.
+    // );
   }
 }
