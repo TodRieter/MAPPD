@@ -79,23 +79,23 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               );
             }),
-        SizedBox(
-          height: 10,
-          child: BottomNavigationBar(items: const [
-            BottomNavigationBarItem(
-              label: '1',
-              icon: Icon(Icons.add),
-            ),
-            BottomNavigationBarItem(
-              label: '2',
-              icon: Icon(Icons.add),
-            ),
-            BottomNavigationBarItem(
-              label: '3',
-              icon: Icon(Icons.add),
-            ),
-          ]),
-        )
+        // SizedBox(
+        //   height: 10,
+        //   child: BottomNavigationBar(items: const [
+        //     BottomNavigationBarItem(
+        //       label: '1',
+        //       icon: Icon(Icons.add),
+        //     ),
+        //     BottomNavigationBarItem(
+        //       label: '2',
+        //       icon: Icon(Icons.add),
+        //     ),
+        //     BottomNavigationBarItem(
+        //       label: '3',
+        //       icon: Icon(Icons.add),
+        //     ),
+        //   ]),
+        // )
       ]),
     );
     // ),
