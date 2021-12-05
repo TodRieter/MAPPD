@@ -8,6 +8,7 @@ class DetaService {
   final String id = "b021g1cl";
 
   Future<bool> postPost(Post post) async {
+    print(post);
     final url = 'https://database.deta.sh/v1/$id/posts/items'; //b0nwc6hd
     final uri = Uri.parse(url);
     final envelope = Envelope(post);
@@ -22,6 +23,7 @@ class DetaService {
       body: string,
     )
         .then((response) {
+      print(response.body);
       if (response.statusCode < 300) {
         return true;
       }
