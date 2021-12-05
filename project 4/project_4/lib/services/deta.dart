@@ -46,6 +46,7 @@ class DetaService {
     http.delete(Uri.parse(url), headers: {'X-API-Key': key});
   }
 
+  //not fully implemented
   void patch(Post item) {
     String? itemKey = item.key;
     String body = item.body;

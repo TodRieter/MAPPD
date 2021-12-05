@@ -42,9 +42,6 @@ class _PostsPageState extends State<PostsPage> {
 
   @override
   Widget build(BuildContext context) {
-    // for (Post post in posts) {
-    //   DetaService().postPost(post);
-    // }
     return Stack(
       children: [
         Card(

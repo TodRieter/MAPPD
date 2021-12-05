@@ -1,13 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserData {
-  // String? name;
-  // String? dateOfBirth;
-  // String? favoriteUnreadBook;
-  // String? favoriteReadBook; //this should never have a value
-  // bool expandByDefault;
-  // bool filterRussellReviews;
-
   static SharedPreferences? _preferences;
   static const _keyUsername = 'username';
   static const _keyDoB = 'DateOfBirth';
@@ -45,13 +38,4 @@ class UserData {
 
   static bool getFilterRussellPosts() =>
       _preferences?.getBool(_keyFilterRussellPosts) ?? false;
-
-  // UserData({
-  //   this.name,
-  //   this.dateOfBirth,
-  //   this.favoriteUnreadBook,
-  //   this.favoriteReadBook,
-  //   this.expandByDefault = false,
-  //   this.filterRussellReviews = true,
-  // });
 }
