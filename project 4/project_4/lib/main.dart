@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'services/deta.dart';
-import 'models/post.dart';
+import 'package:project_4/viewmodel/new_post_page.dart';
+import 'package:project_4/viewmodel/posts_page.dart';
+import 'models/user_data.dart';
 
-void main() {
+import 'viewmodel/user_data_page.dart';
+
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await UserData.init();
   runApp(const MyApp());
 }
 
@@ -13,11 +18,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'TLDR',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'TLDR'),
     );
   }
 }
@@ -32,71 +37,63 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-  // final posts_from_services = DetaService().fetchPost();
-
-  final posts = [
-    Post(
-      'Jon Jaffari',
-      'Who Ever wrote this autobiography clearly never met Jon Jaffari!',
-      "Thomas Wilson",
-      "The Life of Jon Jaffari (an auto biography in 3 parts)",
-      DateTime.now().microsecondsSinceEpoch,
-    ),
+  Widget? screen;
+  List<Widget> screens = [
+    PostsPage(),
+    const NewPostPage(),
+    UserDataPage(UserData()),
   ];
 
-  void _incrementCounter() {
+  void setScreen(int? index, Widget? screen) {
     setState(() {
-      _counter++;
+      if (index != null) {
+        this.screen = screens[index];
+        return;
+      }
+      if (screen != null) {
+        this.screen = screen;
+        return;
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // print("posts_from_services: ${DetaService().fetchPost()}");
+    List<Widget> screens = [
+      PostsPage(),
+      const NewPostPage(),
+      UserDataPage(UserData()),
+    ];
+    screen ??= screens[0];
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Column(children: [
-        ListView.builder(
-            itemCount: posts.length,
-            itemBuilder: (context, index) {
-              final item = posts[index];
-              return ExpansionTile(
-                leading: CircleAvatar(
-                  child: Text(item.reviewer),
-                ),
-                title: Text(item.title),
-                children: [
-                  Text(item.body),
-                  ElevatedButton(
-                    onPressed: () {
-                      DetaService().postPost(item);
-                    },
-                    child: const Text("Post"),
-                  )
-                ],
-              );
-            }),
-        // SizedBox(
-        //   height: 10,
-        //   child: BottomNavigationBar(items: const [
-        //     BottomNavigationBarItem(
-        //       label: '1',
-        //       icon: Icon(Icons.add),
-        //     ),
-        //     BottomNavigationBarItem(
-        //       label: '2',
-        //       icon: Icon(Icons.add),
-        //     ),
-        //     BottomNavigationBarItem(
-        //       label: '3',
-        //       icon: Icon(Icons.add),
-        //     ),
-        //   ]),
-        // )
-      ]),
+      bottomNavigationBar: BottomNavigationBar(
+          onTap: (index) {
+            setState(() {
+              screen = screens[index];
+            });
+          },
+          items: const [
+            BottomNavigationBarItem(
+              label: '1',
+              icon: Icon(Icons.add),
+            ),
+            BottomNavigationBarItem(
+              label: '2',
+              icon: Icon(Icons.add),
+            ),
+            BottomNavigationBarItem(
+              label: '3',
+              icon: Icon(Icons.add),
+            ),
+          ]),
+
+      body: screen,
+      // SizedBox(
+      //   height: 10,
+      // child:
     );
     // ),
     // floatingActionButton: FloatingActionButton(

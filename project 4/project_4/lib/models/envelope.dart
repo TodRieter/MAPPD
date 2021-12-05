@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class Envelope {
   final dynamic item;
   Envelope(this.item);

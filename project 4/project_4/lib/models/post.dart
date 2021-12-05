@@ -6,18 +6,29 @@ class Post {
   final String body;
   final String reviewer;
   final String title;
-  final int date;
-  Post(
-    this.author,
-    this.body,
-    this.reviewer,
-    this.title,
-    this.date,
-  );
+  final int? date;
+  final String? humanTime;
+  String? key;
+  Post({
+    required this.author,
+    required this.body,
+    required this.reviewer,
+    required this.title,
+    required this.date,
+    required this.humanTime,
+    this.key,
+  });
 
   factory Post.fromJson(Map<String, dynamic> json) {
-    return Post(json['author'], json['body'], json['reviewer'], json['title'],
-        json['date']);
+    return Post(
+      author: json['author'] ?? "null",
+      body: json['body'] ?? "null",
+      reviewer: json['reviewer'] ?? "null",
+      title: json['title'] ?? "null",
+      date: json['date'] ?? "null",
+      humanTime: json['humanTime'] ?? "null",
+      key: json["key"] ?? "null",
+    );
   }
 
   Map<String, dynamic> toJson() {
@@ -26,7 +37,9 @@ class Post {
       'body': body,
       'reviewer': reviewer,
       'title': title,
-      'date': date,
+      'date': date ?? "",
+      'humanTime': humanTime ?? "",
+      "key": key ?? "",
     };
   }
 }
