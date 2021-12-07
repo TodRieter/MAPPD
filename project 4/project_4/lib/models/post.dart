@@ -39,7 +39,6 @@ class Post {
       'title': title,
       'date': date ?? "",
       'humanTime': humanTime ?? "",
-      "key": key ?? "",
     };
   }
 }

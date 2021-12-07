@@ -7,27 +7,7 @@ import 'package:project_4/services/deta.dart';
 import 'package:http/http.dart' as http;
 
 class PostsPage extends StatefulWidget {
-  // final posts = [
-  //   Post(
-  //     author: 'Jon Jaffari',
-  //     body: 'Who Ever wrote this autobiography clearly never met Jon Jaffari!',
-  //     reviewer: "Thomas Wilson",
-  //     title: "The Life of Jon Jaffari (an auto biography in 3 parts)",
-  //     date: DateTime.now().microsecondsSinceEpoch.toString(),
-  //     humanTime: DateTime.now().toString(),
-  //     key: '0',
-  //   ),
-  //   Post(
-  //     author: 'Jon',
-  //     body: 'Who',
-  //     reviewer: "Thomas",
-  //     title: "The",
-  //     date: DateTime.now().microsecondsSinceEpoch.toString(),
-  //     humanTime: DateTime.now().toString(),
-  //     key: "1",
-  //   ),
-  // ];
-
+ 
   @override
   State<PostsPage> createState() => _PostsPageState();
 }
@@ -101,7 +81,6 @@ class _PostsPageState extends State<PostsPage> {
         });
       }
     } catch (err) {
-      print(err);
     }
   }
 

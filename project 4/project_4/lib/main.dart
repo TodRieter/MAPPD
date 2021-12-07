@@ -58,6 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    int idx = 0;
     List<Widget> screens = [
       PostsPage(),
       const NewPostPage(),
@@ -69,23 +70,34 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: Colors.amber,
+          currentIndex: idx,
           onTap: (index) {
             setState(() {
               screen = screens[index];
+              idx = index;
             });
           },
           items: const [
             BottomNavigationBarItem(
               label: '1',
               icon: Icon(Icons.add),
+              activeIcon: Icon(Icons.add, color: Colors.amber),
             ),
             BottomNavigationBarItem(
-              label: '2',
-              icon: Icon(Icons.add),
-            ),
+                label: '2',
+                icon: Icon(Icons.add),
+                activeIcon: Icon(
+                  Icons.add,
+                  color: Colors.amber,
+                )),
             BottomNavigationBarItem(
               label: '3',
               icon: Icon(Icons.add),
+              activeIcon: Icon(
+                Icons.add,
+                color: Colors.amber,
+              ),
             ),
           ]),
       body: screen,

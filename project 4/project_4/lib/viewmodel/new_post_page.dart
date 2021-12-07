@@ -12,7 +12,7 @@ class NewPostPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String username = "";
+    String username = UserData.getUsername();
     String tmpTitle = "";
     String tmpAuthor = "";
     String tmpReview = "";
@@ -39,6 +39,8 @@ class NewPostPage extends StatelessWidget {
           },
         ),
         TextFormField(
+          maxLines: null,
+          minLines: null,
           decoration: const InputDecoration(labelText: "Book Review"),
           onChanged: (value) {
             tmpReview = value;
@@ -56,6 +58,7 @@ class NewPostPage extends StatelessWidget {
                 humanTime: DateTime.now().toString(),
               ),
             );
+            
           },
           child: const Text("Post Review"),
         ),
